@@ -81,7 +81,9 @@ admixMap <- function(admixDataList,
             if (is(admixDataList[[1]], "GenotypeIterator")) {
                 local[,,i] <- getGenotypeSelection(admixDataList[[i]], scan=sample.index, order="selection", transpose=TRUE, use.names=FALSE, drop=FALSE)
             } else {
-                local[,,i] <- refDosage(admixDataList[[i]], use.names=FALSE)[sample.index,,drop=FALSE]
+               # local[,,i] <- refDosage(admixDataList[[i]], use.names=FALSE)[sample.index,,drop=FALSE]
+               local[,,i] <- imputedDosage(admixDataList[[i]], use.names=FALSE)[sample.index,,drop=FALSE]
+              
             }
         }
         if (any(is.na(local))) warning("missing values in local ancestry will produce NA output for this block")
